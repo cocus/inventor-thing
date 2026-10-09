@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Laberinto de Larry</title>
+<style>
+  :root { --bg: #14161a; --panel: #23262c; --text: #e6e6e6; --accent: #5dff3a; --muted: #9aa0a6; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.4 system-ui, sans-serif; }
+  main { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 12px 16px; }
+  #wrap { position: relative; max-width: 100%; overflow: auto; }
+  canvas { display: block; image-rendering: pixelated; image-rendering: crisp-edges; background: #000;
+           width: 960px; aspect-ratio: 4 / 3; height: auto; max-width: calc(100vw - 32px); touch-action: none; }
+  .bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; justify-content: center; }
+  button, select, label.btn { background: var(--panel); color: var(--text); border: 1px solid #3a3f47; border-radius: 6px;
+           padding: 5px 10px; font: inherit; cursor: pointer; }
+  button:hover, label.btn:hover { border-color: var(--accent); }
+  button:disabled { opacity: .45; cursor: default; }
+  .hint { color: var(--muted); font-size: 12px; text-align: center; max-width: 900px; }
+  #status { color: var(--accent); min-height: 1.4em; }
+  #setup { position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
+           gap: 12px; background: rgba(0,0,0,.85); text-align: center; padding: 20px; }
+  #setup.show { display: flex; }
+  input[type=file] { display: none; }
+  [hidden] { display: none !important; }
+  input[type=checkbox] { display: inline; }
+  dialog { background: var(--panel); color: var(--text); border: 1px solid #3a3f47; border-radius: 10px; padding: 16px 18px;
+           width: min(560px, calc(100vw - 32px)); }
+  dialog::backdrop { background: rgba(0,0,0,.6); }
+  dialog h2 { margin: 0 0 10px; font-size: 16px; }
+  .slot { display: grid; grid-template-columns: 1fr auto auto auto; gap: 6px; align-items: center; padding: 6px 0;
+          border-top: 1px solid #33373e; }
+  .slot input[type=text] { background: var(--bg); color: var(--text); border: 1px solid #3a3f47; border-radius: 6px;
+          padding: 5px 8px; font: inherit; min-width: 0; }
+  .slot small { grid-column: 1 / -1; color: var(--muted); font-size: 11px; margin-top: -4px; }
+  .row { display: flex; flex-wrap: wrap; gap: 6px; justify-content: space-between; margin-top: 12px; }
+  #dlgMsg { color: var(--accent); min-height: 1.3em; font-size: 12px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<main>
+  <div id="wrap">
+    <canvas id="screen" width="640" height="480"></canvas>
+    <div id="setup">
+      <div id="setupMsg"></div>
+      <div id="pickers" class="bar" hidden>
+        <label class="btn"><span data-i18n="pickFolder"></span>
+          <input type="file" id="pickFolder" webkitdirectory directory multiple>
+        </label>
+        <label class="btn"><span data-i18n="pickIso"></span>
+          <input type="file" id="pickIso" accept=".iso,application/x-iso9660-image">
+        </label>
+      </div>
+      <div class="hint" id="pickNote" data-i18n="pickNote" hidden></div>
+    </div>
+  </div>
+  <div class="bar">
+    <select id="bRoom" data-i18n-title="roomTitle">
+      <option value="maze" data-i18n="roomMaze"></option>
+      <option value="taller" data-i18n="roomTaller"></option>
+    </select>
+    <button id="bNew" data-i18n="new"></button>
+    <button id="bSaves" data-i18n="saves"></button>
+    <button id="bPng" data-i18n="png"></button>
+    <button id="bHelp" data-i18n="rules"></button>
+    <select id="bSize" data-i18n-title="boardTitle"></select>
+    <label class="btn"><input type="checkbox" id="bSound" checked> <span data-i18n="sound"></span></label>
+    <label class="btn"><input type="checkbox" id="bMusic" checked> <span data-i18n="music"></span></label>
+    <select id="bSpeed" data-i18n-title="speedTitle">
+      <option value="0.5" data-i18n="slow"></option><option value="1" data-i18n="normal" selected></option>
+      <option value="2" data-i18n="fast"></option><option value="4" data-i18n="faster"></option>
+    </select>
+    <select id="bScale" data-i18n-title="zoomTitle">
+      <option value="1">×1</option><option value="1.5" selected>×1.5</option><option value="2">×2</option>
+    </select>
+    <select id="bLang" data-i18n-title="langTitle">
+      <option value="es">Español</option><option value="en">English</option>
+    </select>
+  </div>
+  <div id="status"></div>
+  <div class="hint" data-i18n="hintText"></div>
+</main>
+
+<dialog id="saves">
+  <h2 data-i18n="savesTitle"></h2>
+  <div id="slots"></div>
+  <div class="row">
+    <span>
+      <button id="dExport" data-i18n="download"></button>
+      <label class="btn"><span data-i18n="openFile"></span><input type="file" id="dImport" accept=".json,application/json"></label>
+    </span>
+    <button id="dClose" data-i18n="close"></button>
+  </div>
+  <div id="dlgMsg"></div>
+</dialog>
+
+<script src="js/formats.js"></script>
+<script src="js/data.js"></script>
+<script src="js/model.js"></script>
+<script src="js/i18n.js"></script>
+<script src="js/app.js"></script>
+<script src="js/taller_data.js"></script>
+<script src="js/taller.js"></script>
+<script>
+(async () => {
+  const $ = (id) => document.getElementById(id);
+  const setup = $('setup'), status = $('status');
+  let noteText = '', noteUntil = 0;
+  const note = (t) => { noteText = t; noteUntil = Date.now() + 4000; };
+  const params = new URLSearchParams(location.search);
+  if (params.get('game')) Files.base = params.get('game').replace(/\/?$/, '/');
+  if (params.get('lang')) setLang(params.get('lang'));
+  const app = new App($('screen'));
+  app.timerLoop = params.get('tick') === 'timer';
+  window.app = app;
+
+  // ---- settings: remembered with the rest of the app state
+  const settings = Object.assign({ sound: true, music: true, speed: 1, scale: 1.5 }, Store.get('settings', {}));
+  const saveSettings = () => Store.set('settings', settings);
+  Sound.enabled = settings.sound;
+  Sound.musicEnabled = settings.music;
+  app.speed = params.get('speed') ? Number(params.get('speed')) : settings.speed;
+  app.scale = settings.scale;
+  $('bSound').checked = settings.sound;
+  $('bMusic').checked = settings.music;
+  $('bSpeed').value = String(settings.speed);
+  $('bScale').value = String(settings.scale);
+  $('bLang').value = LANG;
+
+  // ---- language
+  const SIZES = [[14, 10], [18, 12], [22, 14], [26, 16], [30, 20], [40, 30]];
+  function applyI18n() {
+    document.documentElement.lang = LANG;
+    for (const el of document.querySelectorAll('[data-i18n]')) el.textContent = T(el.dataset.i18n);
+    for (const el of document.querySelectorAll('[data-i18n-title]')) el.title = T(el.dataset.i18nTitle);
+    const sel = $('bSize');
+    sel.textContent = '';
+    for (const [c, r] of SIZES) {
+      sel.add(new Option(c === STD_COLS && r === STD_ROWS ? T('boardOriginal', c, r) : T('board', c, r), `${c}x${r}`));
+    }
+    syncSize();
+    if (app.room) app.setRoom(app.room);
+  }
+  $('bLang').onchange = (e) => { setLang(e.target.value); applyI18n(); };
+
+  async function boot() {
+    setup.classList.add('show');
+    $('setupMsg').textContent = T('loading');
+    try {
+      await app.init();
+      setup.classList.remove('show');
+      // Reopen the game used last (the hooks below can override it).
+      if (Store.get('room', 'maze') === 'taller' && !params.get('auto') && !params.get('design')) await app.showTaller();
+      else app.setRoom(app.screen instanceof TallerScreen ? 'taller' : 'maze');
+      // Testing hooks: ?design=<base64 JSON>&size=CxR&ch=N&lang=es|en&auto=test|run|score|confirm|challenges|saves|taller
+      if (params.get('design')) app.importDesign(JSON.parse(atob(params.get('design'))));
+      if (params.get('size')) { const [c, r] = params.get('size').split('x').map(Number); app.setBoardSize(c, r); }
+      if (params.has('ch')) app.setChallenge(Number(params.get('ch')));
+      const auto = params.get('auto');
+      if (auto === 'test' || auto === 'run') app.showTest();
+      if (auto === 'run') app.screen.start();
+      if (auto === 'confirm') app.confirm(T('clearAll'), () => {});
+      if (auto === 'saves') app.openSaves();
+      if (auto === 'taller') {
+        await app.showTaller();
+        if (params.has('machine')) {
+          await app.screen.debugSetup(Number(params.get('machine')), params.has('solve'), params.has('wrong'));
+          if (params.has('build')) setTimeout(() => app.screen.build(), 600);
+          if (params.has('hint')) app.screen.hint = { k: 0 };
+        }
+        if (params.has('help')) app.screen.help = { page: 0 };
+      }
+      if (params.has('peek')) app.editor.peek = true;
+      if (params.get('press')) app.editor.pressed = app.editor.buttons.find((b) => b.slot === Number(params.get('press')));
+      if (auto === 'challenges') { app.openChallenges(); if (params.get('view')) { app.overlay.view = params.get('view'); app.overlay.sel = Number(params.get('sel') || 0); } }
+      if (auto === 'score') {
+        app.showTest();
+        const stats = newStats(); stats.conveyor = 2; stats.uses[0] = 1;
+        app.showScore({ panel: Number(params.get('panel') || 0), ok: true, board: app.screen.board, stats });
+      }
+      applyI18n();
+    } catch (e) {
+      console.warn(e);
+      Assets.pages.clear();
+      $('setupMsg').textContent = Files.map ? T('badFiles', e.message) : T('noFiles');
+      $('pickers').hidden = false;
+      $('pickNote').hidden = false;
+    }
+  }
+  $('pickFolder').addEventListener('change', (e) => { Files.useFolder(e.target.files); boot(); });
+  $('pickIso').addEventListener('change', async (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    $('setupMsg').textContent = T('loading');
+    try { await Files.useIso(f); } catch (err) { $('setupMsg').textContent = T('badFiles', err.message); return; }
+    boot();
+  });
+
+  // ---- board size
+  function syncSize() {
+    const v = `${GRID_COLS}x${GRID_ROWS}`;
+    const sel = $('bSize');
+    if (![...sel.options].some((o) => o.value === v)) sel.add(new Option(T('board', GRID_COLS, GRID_ROWS), v));
+    sel.value = v;
+  }
+  $('bSize').onchange = (e) => {
+    const [c, r] = e.target.value.split('x').map(Number);
+    const apply = () => {
+      const lost = app.setBoardSize(c, r);
+      if (lost) note(T('removedParts', lost));
+      syncSize();
+    };
+    const fits = app.design.parts.every((p) => {
+      const s = partSize(p.type, p.v);
+      return p.c + s.cols <= c && p.r + s.rows <= r;
+    });
+    if (fits) apply();
+    else app.confirm(T('partsDontFit'), apply);
+    if (!fits) syncSize(); // keep showing the current size until confirmed
+  };
+
+  // ---- save / open dialog
+  const dlg = $('saves');
+  const N_SLOTS = 6;
+  function renderSlots() {
+    const slots = app.slots();
+    const box = $('slots');
+    box.textContent = '';
+    for (let i = 0; i < N_SLOTS; i++) {
+      const s = slots[i];
+      const row = document.createElement('div');
+      row.className = 'slot';
+      const name = document.createElement('input');
+      name.type = 'text';
+      name.value = s ? s.name : '';
+      name.placeholder = T('slot', i + 1);
+      const bSave = document.createElement('button');
+      bSave.textContent = T('saveHere');
+      bSave.onclick = () => {
+        // Overwriting takes a second click (no native confirm(): embedded browsers may block it).
+        if (s && bSave.dataset.armed !== '1') { bSave.dataset.armed = '1'; bSave.textContent = T('overwrite'); return; }
+        app.saveSlot(i, name.value.trim());
+        $('dlgMsg').textContent = T('savedIn', i + 1);
+        renderSlots();
+      };
+      const bLoad = document.createElement('button');
+      bLoad.textContent = T('open');
+      bLoad.disabled = !s;
+      bLoad.onclick = () => { app.loadSlot(i); syncSize(); dlg.close(); note(T('opened', s.name)); };
+      const bDel = document.createElement('button');
+      bDel.textContent = T('delete');
+      bDel.disabled = !s;
+      bDel.onclick = () => { app.deleteSlot(i); renderSlots(); };
+      row.append(name, bSave, bLoad, bDel);
+      if (s) {
+        const info = document.createElement('small');
+        const d = s.design || {};
+        info.textContent = T('slotInfo', (d.parts || []).length, d.cols || 14, d.rows || 10, new Date(s.date).toLocaleString());
+        row.append(info);
+      }
+      box.append(row);
+    }
+  }
+  app.onOpenSaves = () => { $('dlgMsg').textContent = ''; renderSlots(); if (!dlg.open) dlg.showModal(); };
+  $('bSaves').onclick = () => app.openSaves();
+  $('dClose').onclick = () => dlg.close();
+  $('dExport').onclick = () => { app.exportDesign(); $('dlgMsg').textContent = T('downloading'); };
+  $('dImport').addEventListener('change', async (e) => {
+    const f = e.target.files[0];
+    if (!f) return;
+    try {
+      app.importDesign(JSON.parse(await f.text()));
+      syncSize();
+      dlg.close();
+      note(T('opened', f.name));
+    } catch (err) {
+      $('dlgMsg').textContent = T('cantRead', err.message);
+    }
+    e.target.value = '';
+  });
+
+  $('bRoom').onchange = (e) => { if (e.target.value === 'taller') app.showTaller(); else app.showEditor(); };
+  $('bNew').onclick = () => app.confirm(T('newDesign'), () => app.newDesign());
+  $('bPng').onclick = () => app.snapshot();
+  $('bHelp').onclick = () => {
+    if (app.screen instanceof TallerScreen) app.screen.help = { page: 0 };
+    else app.showHelp();
+  };
+  $('bSound').onchange = (e) => {
+    settings.sound = Sound.enabled = e.target.checked;
+    if (!Sound.enabled) Sound.stopAll();
+    saveSettings();
+  };
+  $('bMusic').onchange = (e) => { settings.music = e.target.checked; Sound.setMusic(settings.music); saveSettings(); };
+  $('bSpeed').onchange = (e) => { settings.speed = app.speed = Number(e.target.value); saveSettings(); };
+  $('bScale').onchange = (e) => { settings.scale = app.scale = Number(e.target.value); app.applyScale(); saveSettings(); };
+
+  setInterval(() => {
+    const inTaller = app.screen instanceof TallerScreen;
+    $('bRoom').value = inTaller ? 'taller' : 'maze';
+    for (const id of ['bNew', 'bSaves', 'bSize']) $(id).disabled = inTaller;
+    if (inTaller) {
+      const done = [...Array(10).keys()].filter((m) => app.screen.completed & (1 << m)).length;
+      status.textContent = T('statusTaller', done);
+      return;
+    }
+    if (Date.now() < noteUntil) { status.textContent = noteText; return; }
+    const mode = app.challenge ? T('statusChallenge', app.challenge, challengeTitle(app.challenge)) : T('statusFree');
+    status.textContent = `${mode} · ${GRID_COLS} × ${GRID_ROWS} · ${T('statusParts', app.design.parts.length)}`;
+  }, 300);
+
+  applyI18n();
+  // Testing hook: ?iso=URL reads the game from a CD image fetched from URL.
+  if (params.get('iso')) {
+    try {
+      const bytes = await (await fetch(params.get('iso'))).arrayBuffer();
+      await Files.useIso(new Blob([bytes])); // behaves like a picked File
+    } catch (e) { console.warn(e); }
+  }
+  boot();
+})();
+</script>
+</body>
+</html>

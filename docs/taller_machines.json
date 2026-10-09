@@ -1,0 +1,1847 @@
+{
+ "components": [
+  "aguja del fonógrafo",
+  "unidad de potencia del robot",
+  "procesador de la computadora",
+  "transformador",
+  "micrófono",
+  "brazo de robot",
+  "generador hidráulico",
+  "palas de ventilador",
+  "tocadiscos",
+  "fuente de alimentación",
+  "motor pequeño",
+  "amplificador",
+  "altavoz",
+  "motor tamaño medio",
+  "bolsa",
+  "tubo",
+  "termostato",
+  "interruptor eléctrico",
+  "interruptor eléctrico automático",
+  "sistema de calefacción",
+  "tubo",
+  "elemento de soporte",
+  "muelle",
+  "electroimán",
+  "enganche",
+  "ruedas",
+  "imán",
+  "circuito eléctrico",
+  "martillo",
+  "campana",
+  "vía de tren eléctrico",
+  "bombilla",
+  "bombilla"
+ ],
+ "connections": [
+  "transferencia de datos",
+  "fuerza mecánica",
+  "fuerza hidráulica",
+  "magnetismo",
+  "señal eléctrica variable",
+  "corriente de energía eléctrica",
+  "succión"
+ ],
+ "machines": [
+  {
+   "id": 0,
+   "name": "Indicador de calor",
+   "intro": 7137,
+   "fail": 7300,
+   "powerPos": 14,
+   "partsPage": 7050,
+   "partsGfx": [
+    16,
+    9,
+    31
+   ],
+   "anim": "BD7011",
+   "animFrames": 59,
+   "cues": [
+    [
+     1,
+     7402
+    ],
+    [
+     18,
+     7401
+    ],
+    [
+     22,
+     7400
+    ]
+   ],
+   "components": [
+    {
+     "pos": 0,
+     "r": 0,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 141,
+     "id": 31,
+     "name": "bombilla"
+    },
+    {
+     "pos": 7,
+     "r": 1,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 221,
+     "id": 16,
+     "name": "termostato"
+    },
+    {
+     "pos": 14,
+     "r": 2,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 301,
+     "id": 9,
+     "name": "fuente de alimentación"
+    }
+   ],
+   "links": [
+    {
+     "idx": 6,
+     "l5": 1,
+     "l7": 1,
+     "kind": "v",
+     "iconX": 296,
+     "iconY": 183,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 18,
+     "l5": 3,
+     "l7": 3,
+     "kind": "v",
+     "iconX": 456,
+     "iconY": 263,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    }
+   ],
+   "given": [
+    {
+     "kind": "comp",
+     "row": 0,
+     "col": 0,
+     "value": 31
+    }
+   ]
+  },
+  {
+   "id": 1,
+   "name": "Ventilador",
+   "intro": 7107,
+   "fail": 7301,
+   "powerPos": 14,
+   "partsPage": 7051,
+   "partsGfx": [
+    3,
+    7,
+    9,
+    10
+   ],
+   "anim": "BD7004",
+   "animFrames": 66,
+   "cues": [
+    [
+     1,
+     7423
+    ],
+    [
+     2,
+     7421
+    ],
+    [
+     10,
+     7423
+    ],
+    [
+     19,
+     7423
+    ],
+    [
+     29,
+     7423
+    ]
+   ],
+   "components": [
+    {
+     "pos": 2,
+     "r": 0,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 141,
+     "id": 10,
+     "name": "motor pequeño"
+    },
+    {
+     "pos": 5,
+     "r": 1,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 221,
+     "id": 7,
+     "name": "palas de ventilador"
+    },
+    {
+     "pos": 7,
+     "r": 1,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 221,
+     "id": 3,
+     "name": "transformador"
+    },
+    {
+     "pos": 14,
+     "r": 2,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 301,
+     "id": 9,
+     "name": "fuente de alimentación"
+    }
+   ],
+   "links": [
+    {
+     "idx": 6,
+     "l5": 1,
+     "l7": 1,
+     "kind": "v",
+     "iconX": 296,
+     "iconY": 183,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 7,
+     "l5": 1,
+     "l7": 2,
+     "kind": "v",
+     "iconX": 376,
+     "iconY": 183,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 18,
+     "l5": 3,
+     "l7": 3,
+     "kind": "v",
+     "iconX": 456,
+     "iconY": 263,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    }
+   ],
+   "given": [
+    {
+     "kind": "link",
+     "row": 1,
+     "col": 1,
+     "value": 1
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "name": "Tren eléctrico ",
+   "intro": 7109,
+   "fail": 7303,
+   "powerPos": 5,
+   "partsPage": 7053,
+   "partsGfx": [
+    3,
+    9,
+    30,
+    25,
+    10,
+    32
+   ],
+   "anim": "BD7008",
+   "animFrames": 58,
+   "cues": [
+    [
+     1,
+     7405
+    ],
+    [
+     6,
+     7403
+    ],
+    [
+     55,
+     7404
+    ]
+   ],
+   "components": [
+    {
+     "pos": 2,
+     "r": 0,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 141,
+     "id": 30,
+     "name": "vía de tren eléctrico"
+    },
+    {
+     "pos": 4,
+     "r": 0,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 141,
+     "id": 25,
+     "name": "ruedas"
+    },
+    {
+     "pos": 5,
+     "r": 1,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 221,
+     "id": 9,
+     "name": "fuente de alimentación"
+    },
+    {
+     "pos": 7,
+     "r": 1,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 221,
+     "id": 3,
+     "name": "transformador"
+    },
+    {
+     "pos": 13,
+     "r": 2,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 301,
+     "id": 10,
+     "name": "motor pequeño"
+    }
+   ],
+   "links": [
+    {
+     "idx": 3,
+     "l5": 0,
+     "l7": 3,
+     "kind": "h",
+     "iconX": 496,
+     "iconY": 143,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 7,
+     "l5": 1,
+     "l7": 2,
+     "kind": "v",
+     "iconX": 376,
+     "iconY": 183,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 10,
+     "l5": 2,
+     "l7": 0,
+     "kind": "h",
+     "iconX": 256,
+     "iconY": 223,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 12,
+     "l5": 2,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 223,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 13,
+     "l5": 2,
+     "l7": 3,
+     "kind": "h",
+     "iconX": 496,
+     "iconY": 223,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    }
+   ],
+   "given": [
+    {
+     "kind": "link",
+     "row": 0,
+     "col": 3,
+     "value": 1
+    },
+    {
+     "kind": "link",
+     "row": 2,
+     "col": 2,
+     "value": 5
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "name": "Aspiradora",
+   "intro": 7108,
+   "fail": 7302,
+   "powerPos": 11,
+   "partsPage": 7052,
+   "partsGfx": [
+    9,
+    13,
+    7,
+    14,
+    15,
+    32
+   ],
+   "anim": "BD7009",
+   "animFrames": 60,
+   "cues": [
+    [
+     1,
+     7406
+    ],
+    [
+     3,
+     7407
+    ],
+    [
+     5,
+     7408
+    ],
+    [
+     10,
+     7409
+    ]
+   ],
+   "components": [
+    {
+     "pos": 2,
+     "r": 0,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 141,
+     "id": 7,
+     "name": "palas de ventilador"
+    },
+    {
+     "pos": 5,
+     "r": 1,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 221,
+     "id": 13,
+     "name": "motor tamaño medio"
+    },
+    {
+     "pos": 7,
+     "r": 1,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 221,
+     "id": 14,
+     "name": "bolsa"
+    },
+    {
+     "pos": 11,
+     "r": 2,
+     "c": 1,
+     "iconX": 291,
+     "iconY": 301,
+     "id": 9,
+     "name": "fuente de alimentación"
+    },
+    {
+     "pos": 14,
+     "r": 2,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 301,
+     "id": 15,
+     "name": "tubo"
+    }
+   ],
+   "links": [
+    {
+     "idx": 6,
+     "l5": 1,
+     "l7": 1,
+     "kind": "v",
+     "iconX": 296,
+     "iconY": 183,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 7,
+     "l5": 1,
+     "l7": 2,
+     "kind": "v",
+     "iconX": 376,
+     "iconY": 183,
+     "type": 6,
+     "typeName": "succión"
+    },
+    {
+     "idx": 18,
+     "l5": 3,
+     "l7": 3,
+     "kind": "v",
+     "iconX": 456,
+     "iconY": 263,
+     "type": 6,
+     "typeName": "succión"
+    },
+    {
+     "idx": 20,
+     "l5": 4,
+     "l7": 0,
+     "kind": "h",
+     "iconX": 256,
+     "iconY": 303,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    }
+   ],
+   "given": [
+    {
+     "kind": "comp",
+     "row": 0,
+     "col": 2,
+     "value": 7
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "name": "Brazo del robot",
+   "intro": 7138,
+   "fail": 7304,
+   "powerPos": 14,
+   "partsPage": 7054,
+   "partsGfx": [
+    9,
+    1,
+    6,
+    5,
+    2
+   ],
+   "anim": "BD7013",
+   "animFrames": 59,
+   "cues": [
+    [
+     1,
+     7411
+    ],
+    [
+     35,
+     7410
+    ],
+    [
+     46,
+     7412
+    ]
+   ],
+   "components": [
+    {
+     "pos": 5,
+     "r": 1,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 221,
+     "id": 5,
+     "name": "brazo de robot"
+    },
+    {
+     "pos": 7,
+     "r": 1,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 221,
+     "id": 6,
+     "name": "generador hidráulico"
+    },
+    {
+     "pos": 8,
+     "r": 1,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 221,
+     "id": 1,
+     "name": "unidad de potencia del robot"
+    },
+    {
+     "pos": 9,
+     "r": 1,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 221,
+     "id": 2,
+     "name": "procesador de la computadora"
+    },
+    {
+     "pos": 14,
+     "r": 2,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 301,
+     "id": 9,
+     "name": "fuente de alimentación"
+    }
+   ],
+   "links": [
+    {
+     "idx": 11,
+     "l5": 2,
+     "l7": 1,
+     "kind": "h",
+     "iconX": 336,
+     "iconY": 223,
+     "type": 2,
+     "typeName": "fuerza hidráulica"
+    },
+    {
+     "idx": 12,
+     "l5": 2,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 223,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 13,
+     "l5": 2,
+     "l7": 3,
+     "kind": "h",
+     "iconX": 496,
+     "iconY": 223,
+     "type": 0,
+     "typeName": "transferencia de datos"
+    },
+    {
+     "idx": 18,
+     "l5": 3,
+     "l7": 3,
+     "kind": "v",
+     "iconX": 456,
+     "iconY": 263,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 19,
+     "l5": 3,
+     "l7": 4,
+     "kind": "v",
+     "iconX": 536,
+     "iconY": 263,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    }
+   ],
+   "given": [
+    {
+     "kind": "comp",
+     "row": 1,
+     "col": 3,
+     "value": 1
+    },
+    {
+     "kind": "link",
+     "row": 2,
+     "col": 3,
+     "value": 0
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "name": "Campana electromagnética",
+   "intro": 7139,
+   "fail": 7305,
+   "powerPos": 0,
+   "partsPage": 7055,
+   "partsGfx": [
+    9,
+    17,
+    23,
+    28,
+    29,
+    27
+   ],
+   "anim": "BD7012",
+   "animFrames": 59,
+   "cues": [
+    [
+     1,
+     7417
+    ],
+    [
+     36,
+     7418
+    ],
+    [
+     37,
+     7415
+    ]
+   ],
+   "components": [
+    {
+     "pos": 0,
+     "r": 0,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 141,
+     "id": 9,
+     "name": "fuente de alimentación"
+    },
+    {
+     "pos": 1,
+     "r": 0,
+     "c": 1,
+     "iconX": 291,
+     "iconY": 141,
+     "id": 17,
+     "name": "interruptor eléctrico"
+    },
+    {
+     "pos": 2,
+     "r": 0,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 141,
+     "id": 27,
+     "name": "circuito eléctrico"
+    },
+    {
+     "pos": 3,
+     "r": 0,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 141,
+     "id": 23,
+     "name": "electroimán"
+    },
+    {
+     "pos": 12,
+     "r": 2,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 301,
+     "id": 28,
+     "name": "martillo"
+    },
+    {
+     "pos": 14,
+     "r": 2,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 301,
+     "id": 29,
+     "name": "campana"
+    }
+   ],
+   "links": [
+    {
+     "idx": 0,
+     "l5": 0,
+     "l7": 0,
+     "kind": "h",
+     "iconX": 256,
+     "iconY": 143,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 1,
+     "l5": 0,
+     "l7": 1,
+     "kind": "h",
+     "iconX": 336,
+     "iconY": 143,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 2,
+     "l5": 0,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 143,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 7,
+     "l5": 1,
+     "l7": 2,
+     "kind": "v",
+     "iconX": 376,
+     "iconY": 183,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 12,
+     "l5": 2,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 223,
+     "type": 3,
+     "typeName": "magnetismo"
+    },
+    {
+     "idx": 22,
+     "l5": 4,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 303,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    }
+   ],
+   "given": [
+    {
+     "kind": "comp",
+     "row": 0,
+     "col": 1,
+     "value": 17
+    },
+    {
+     "kind": "comp",
+     "row": 0,
+     "col": 2,
+     "value": 27
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "name": "Secadora",
+   "intro": 7110,
+   "fail": 7306,
+   "powerPos": 1,
+   "partsPage": 7056,
+   "partsGfx": [
+    9,
+    16,
+    18,
+    17,
+    10,
+    7,
+    19,
+    20
+   ],
+   "anim": "BD7010",
+   "animFrames": 60,
+   "cues": [
+    [
+     31,
+     7419
+    ],
+    [
+     2,
+     7423
+    ],
+    [
+     5,
+     7422
+    ],
+    [
+     14,
+     7423
+    ],
+    [
+     30,
+     7423
+    ],
+    [
+     45,
+     7423
+    ]
+   ],
+   "components": [
+    {
+     "pos": 1,
+     "r": 0,
+     "c": 1,
+     "iconX": 291,
+     "iconY": 141,
+     "id": 9,
+     "name": "fuente de alimentación"
+    },
+    {
+     "pos": 3,
+     "r": 0,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 141,
+     "id": 16,
+     "name": "termostato"
+    },
+    {
+     "pos": 6,
+     "r": 1,
+     "c": 1,
+     "iconX": 291,
+     "iconY": 221,
+     "id": 10,
+     "name": "motor pequeño"
+    },
+    {
+     "pos": 7,
+     "r": 1,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 221,
+     "id": 17,
+     "name": "interruptor eléctrico"
+    },
+    {
+     "pos": 8,
+     "r": 1,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 221,
+     "id": 18,
+     "name": "interruptor eléctrico automático"
+    },
+    {
+     "pos": 10,
+     "r": 2,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 301,
+     "id": 20,
+     "name": "tubo"
+    },
+    {
+     "pos": 11,
+     "r": 2,
+     "c": 1,
+     "iconX": 291,
+     "iconY": 301,
+     "id": 7,
+     "name": "palas de ventilador"
+    },
+    {
+     "pos": 13,
+     "r": 2,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 301,
+     "id": 19,
+     "name": "sistema de calefacción"
+    }
+   ],
+   "links": [
+    {
+     "idx": 2,
+     "l5": 0,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 143,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 8,
+     "l5": 1,
+     "l7": 3,
+     "kind": "v",
+     "iconX": 456,
+     "iconY": 183,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 11,
+     "l5": 2,
+     "l7": 1,
+     "kind": "h",
+     "iconX": 336,
+     "iconY": 223,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 12,
+     "l5": 2,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 223,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 16,
+     "l5": 3,
+     "l7": 1,
+     "kind": "v",
+     "iconX": 296,
+     "iconY": 263,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 20,
+     "l5": 4,
+     "l7": 0,
+     "kind": "h",
+     "iconX": 256,
+     "iconY": 303,
+     "type": 6,
+     "typeName": "succión"
+    },
+    {
+     "idx": 22,
+     "l5": 4,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 303,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    }
+   ],
+   "given": [
+    {
+     "kind": "comp",
+     "row": 1,
+     "col": 2,
+     "value": 17
+    },
+    {
+     "kind": "comp",
+     "row": 2,
+     "col": 1,
+     "value": 7
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "name": "Tostadora",
+   "intro": 7111,
+   "fail": 7307,
+   "powerPos": 10,
+   "partsPage": 7057,
+   "partsGfx": [
+    16,
+    9,
+    22,
+    19,
+    21,
+    24,
+    18,
+    23,
+    32,
+    33,
+    34,
+    35
+   ],
+   "anim": "BD7005",
+   "animFrames": 56,
+   "cues": [
+    [
+     5,
+     7425
+    ],
+    [
+     29,
+     7426
+    ],
+    [
+     32,
+     7424
+    ],
+    [
+     51,
+     7427
+    ]
+   ],
+   "components": [
+    {
+     "pos": 1,
+     "r": 0,
+     "c": 1,
+     "iconX": 291,
+     "iconY": 141,
+     "id": 16,
+     "name": "termostato"
+    },
+    {
+     "pos": 3,
+     "r": 0,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 141,
+     "id": 23,
+     "name": "electroimán"
+    },
+    {
+     "pos": 7,
+     "r": 1,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 221,
+     "id": 19,
+     "name": "sistema de calefacción"
+    },
+    {
+     "pos": 9,
+     "r": 1,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 221,
+     "id": 24,
+     "name": "enganche"
+    },
+    {
+     "pos": 10,
+     "r": 2,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 301,
+     "id": 9,
+     "name": "fuente de alimentación"
+    },
+    {
+     "pos": 12,
+     "r": 2,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 301,
+     "id": 18,
+     "name": "interruptor eléctrico automático"
+    },
+    {
+     "pos": 13,
+     "r": 2,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 301,
+     "id": 21,
+     "name": "elemento de soporte"
+    },
+    {
+     "pos": 14,
+     "r": 2,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 301,
+     "id": 22,
+     "name": "muelle"
+    }
+   ],
+   "links": [
+    {
+     "idx": 2,
+     "l5": 0,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 143,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 9,
+     "l5": 1,
+     "l7": 4,
+     "kind": "v",
+     "iconX": 536,
+     "iconY": 183,
+     "type": 3,
+     "typeName": "magnetismo"
+    },
+    {
+     "idx": 10,
+     "l5": 2,
+     "l7": 0,
+     "kind": "h",
+     "iconX": 256,
+     "iconY": 223,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 17,
+     "l5": 3,
+     "l7": 2,
+     "kind": "v",
+     "iconX": 376,
+     "iconY": 263,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 18,
+     "l5": 3,
+     "l7": 3,
+     "kind": "v",
+     "iconX": 456,
+     "iconY": 263,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 20,
+     "l5": 4,
+     "l7": 0,
+     "kind": "h",
+     "iconX": 256,
+     "iconY": 303,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 22,
+     "l5": 4,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 303,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 23,
+     "l5": 4,
+     "l7": 3,
+     "kind": "h",
+     "iconX": 496,
+     "iconY": 303,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    }
+   ],
+   "given": [
+    {
+     "kind": "comp",
+     "row": 0,
+     "col": 1,
+     "value": 16
+    },
+    {
+     "kind": "comp",
+     "row": 1,
+     "col": 4,
+     "value": 24
+    },
+    {
+     "kind": "comp",
+     "row": 2,
+     "col": 4,
+     "value": 22
+    },
+    {
+     "kind": "comp",
+     "row": 2,
+     "col": 2,
+     "value": 18
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "name": "Alarma antirrobo",
+   "intro": 7112,
+   "fail": 7308,
+   "powerPos": 0,
+   "partsPage": 7058,
+   "partsGfx": [
+    9,
+    26,
+    23,
+    28,
+    29,
+    27
+   ],
+   "anim": "BD7007",
+   "animFrames": 58,
+   "cues": [
+    [
+     1,
+     7417
+    ],
+    [
+     20,
+     7413
+    ],
+    [
+     34,
+     7418
+    ],
+    [
+     38,
+     7415
+    ],
+    [
+     40,
+     7416
+    ],
+    [
+     54,
+     7414
+    ]
+   ],
+   "components": [
+    {
+     "pos": 0,
+     "r": 0,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 141,
+     "id": 9,
+     "name": "fuente de alimentación"
+    },
+    {
+     "pos": 2,
+     "r": 0,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 141,
+     "id": 26,
+     "name": "imán"
+    },
+    {
+     "pos": 6,
+     "r": 1,
+     "c": 1,
+     "iconX": 291,
+     "iconY": 221,
+     "id": 18,
+     "name": "interruptor eléctrico automático"
+    },
+    {
+     "pos": 7,
+     "r": 1,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 221,
+     "id": 27,
+     "name": "circuito eléctrico"
+    },
+    {
+     "pos": 8,
+     "r": 1,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 221,
+     "id": 28,
+     "name": "martillo"
+    },
+    {
+     "pos": 9,
+     "r": 1,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 221,
+     "id": 29,
+     "name": "campana"
+    },
+    {
+     "pos": 11,
+     "r": 2,
+     "c": 1,
+     "iconX": 291,
+     "iconY": 301,
+     "id": 22,
+     "name": "muelle"
+    },
+    {
+     "pos": 13,
+     "r": 2,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 301,
+     "id": 23,
+     "name": "electroimán"
+    }
+   ],
+   "links": [
+    {
+     "idx": 0,
+     "l5": 0,
+     "l7": 0,
+     "kind": "h",
+     "iconX": 256,
+     "iconY": 143,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 1,
+     "l5": 0,
+     "l7": 1,
+     "kind": "h",
+     "iconX": 336,
+     "iconY": 143,
+     "type": 3,
+     "typeName": "magnetismo"
+    },
+    {
+     "idx": 11,
+     "l5": 2,
+     "l7": 1,
+     "kind": "h",
+     "iconX": 336,
+     "iconY": 223,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 12,
+     "l5": 2,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 223,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 13,
+     "l5": 2,
+     "l7": 3,
+     "kind": "h",
+     "iconX": 496,
+     "iconY": 223,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 16,
+     "l5": 3,
+     "l7": 1,
+     "kind": "v",
+     "iconX": 296,
+     "iconY": 263,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 18,
+     "l5": 3,
+     "l7": 3,
+     "kind": "v",
+     "iconX": 456,
+     "iconY": 263,
+     "type": 3,
+     "typeName": "magnetismo"
+    },
+    {
+     "idx": 22,
+     "l5": 4,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 303,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    }
+   ],
+   "given": [
+    {
+     "kind": "comp",
+     "row": 2,
+     "col": 1,
+     "value": 22
+    },
+    {
+     "kind": "comp",
+     "row": 1,
+     "col": 4,
+     "value": 29
+    },
+    {
+     "kind": "comp",
+     "row": 0,
+     "col": 2,
+     "value": 26
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "name": "Robot D.J.",
+   "intro": 7113,
+   "fail": 7309,
+   "powerPos": 14,
+   "partsPage": 7059,
+   "partsGfx": [
+    12,
+    9,
+    11,
+    10,
+    8,
+    0,
+    6,
+    1,
+    5,
+    4,
+    2,
+    32,
+    33
+   ],
+   "anim": "BD7001",
+   "animFrames": 64,
+   "cues": [],
+   "components": [
+    {
+     "pos": 0,
+     "r": 0,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 141,
+     "id": 8,
+     "name": "tocadiscos"
+    },
+    {
+     "pos": 1,
+     "r": 0,
+     "c": 1,
+     "iconX": 291,
+     "iconY": 141,
+     "id": 10,
+     "name": "motor pequeño"
+    },
+    {
+     "pos": 2,
+     "r": 0,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 141,
+     "id": 5,
+     "name": "brazo de robot"
+    },
+    {
+     "pos": 3,
+     "r": 0,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 141,
+     "id": 6,
+     "name": "generador hidráulico"
+    },
+    {
+     "pos": 4,
+     "r": 0,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 141,
+     "id": 4,
+     "name": "micrófono"
+    },
+    {
+     "pos": 5,
+     "r": 1,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 221,
+     "id": 0,
+     "name": "aguja del fonógrafo"
+    },
+    {
+     "pos": 8,
+     "r": 1,
+     "c": 3,
+     "iconX": 451,
+     "iconY": 221,
+     "id": 1,
+     "name": "unidad de potencia del robot"
+    },
+    {
+     "pos": 9,
+     "r": 1,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 221,
+     "id": 2,
+     "name": "procesador de la computadora"
+    },
+    {
+     "pos": 10,
+     "r": 2,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 301,
+     "id": 12,
+     "name": "altavoz"
+    },
+    {
+     "pos": 11,
+     "r": 2,
+     "c": 1,
+     "iconX": 291,
+     "iconY": 301,
+     "id": 11,
+     "name": "amplificador"
+    },
+    {
+     "pos": 14,
+     "r": 2,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 301,
+     "id": 9,
+     "name": "fuente de alimentación"
+    }
+   ],
+   "links": [
+    {
+     "idx": 0,
+     "l5": 0,
+     "l7": 0,
+     "kind": "h",
+     "iconX": 256,
+     "iconY": 143,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 2,
+     "l5": 0,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 143,
+     "type": 2,
+     "typeName": "fuerza hidráulica"
+    },
+    {
+     "idx": 5,
+     "l5": 1,
+     "l7": 0,
+     "kind": "v",
+     "iconX": 216,
+     "iconY": 183,
+     "type": 1,
+     "typeName": "fuerza mecánica"
+    },
+    {
+     "idx": 8,
+     "l5": 1,
+     "l7": 3,
+     "kind": "v",
+     "iconX": 456,
+     "iconY": 183,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 9,
+     "l5": 1,
+     "l7": 4,
+     "kind": "v",
+     "iconX": 536,
+     "iconY": 183,
+     "type": 4,
+     "typeName": "señal eléctrica variable"
+    },
+    {
+     "idx": 10,
+     "l5": 2,
+     "l7": 0,
+     "kind": "h",
+     "iconX": 256,
+     "iconY": 223,
+     "type": 4,
+     "typeName": "señal eléctrica variable"
+    },
+    {
+     "idx": 13,
+     "l5": 2,
+     "l7": 3,
+     "kind": "h",
+     "iconX": 496,
+     "iconY": 223,
+     "type": 0,
+     "typeName": "transferencia de datos"
+    },
+    {
+     "idx": 17,
+     "l5": 3,
+     "l7": 2,
+     "kind": "v",
+     "iconX": 376,
+     "iconY": 263,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 18,
+     "l5": 3,
+     "l7": 3,
+     "kind": "v",
+     "iconX": 456,
+     "iconY": 263,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 19,
+     "l5": 3,
+     "l7": 4,
+     "kind": "v",
+     "iconX": 536,
+     "iconY": 263,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 20,
+     "l5": 4,
+     "l7": 0,
+     "kind": "h",
+     "iconX": 256,
+     "iconY": 303,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 22,
+     "l5": 4,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 303,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    }
+   ],
+   "given": [
+    {
+     "kind": "link",
+     "row": 0,
+     "col": 2,
+     "value": 2
+    },
+    {
+     "kind": "link",
+     "row": 1,
+     "col": 0,
+     "value": 1
+    },
+    {
+     "kind": "link",
+     "row": 2,
+     "col": 3,
+     "value": 0
+    },
+    {
+     "kind": "link",
+     "row": 1,
+     "col": 4,
+     "value": 4
+    },
+    {
+     "kind": "link",
+     "row": 2,
+     "col": 0,
+     "value": 4
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "name": "Lámpara",
+   "intro": null,
+   "fail": 6130,
+   "powerPos": 9,
+   "partsPage": 7049,
+   "partsGfx": [
+    9,
+    17,
+    31,
+    32
+   ],
+   "anim": "BD7006",
+   "animFrames": 39,
+   "cues": [
+    [
+     1,
+     7429
+    ],
+    [
+     10,
+     7428
+    ]
+   ],
+   "components": [
+    {
+     "pos": 5,
+     "r": 1,
+     "c": 0,
+     "iconX": 211,
+     "iconY": 221,
+     "id": 31,
+     "name": "bombilla"
+    },
+    {
+     "pos": 7,
+     "r": 1,
+     "c": 2,
+     "iconX": 371,
+     "iconY": 221,
+     "id": 17,
+     "name": "interruptor eléctrico"
+    },
+    {
+     "pos": 9,
+     "r": 1,
+     "c": 4,
+     "iconX": 531,
+     "iconY": 221,
+     "id": 9,
+     "name": "fuente de alimentación"
+    }
+   ],
+   "links": [
+    {
+     "idx": 11,
+     "l5": 2,
+     "l7": 1,
+     "kind": "h",
+     "iconX": 336,
+     "iconY": 223,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    },
+    {
+     "idx": 12,
+     "l5": 2,
+     "l7": 2,
+     "kind": "h",
+     "iconX": 416,
+     "iconY": 223,
+     "type": 5,
+     "typeName": "corriente de energía eléctrica"
+    }
+   ],
+   "given": []
+  }
+ ]
+}

@@ -1,0 +1,22 @@
+# The game's own files are not part of this repository: bring your own copy.
+invention/
+*.iso
+
+# Python
+__pycache__/
+*.pyc
+
+# IDA databases and logs
+*.idb
+*.i64
+*.id0
+*.id1
+*.id2
+*.nam
+*.til
+ida*.log
+
+# OS and editor files
+Thumbs.db
+.DS_Store
+.vscode/
