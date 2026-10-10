@@ -428,9 +428,20 @@ class TallerScreen {
     this.smoke = { t0: performance.now() };
     await sleep(8 * 150 * 3);
     this.smoke = null;
+    // Howard's hint plays in full before the blueprint re-opens (seq153 waits
+    // for the speech), so the cleanup line can't cut it off.
     this.say(m.fail);
-    await sleep(1200);
+    await this.untilQuiet();
+    await sleep(this.ms(300));
     this.openPanel();
+  }
+
+  // Resolves when Howard stops talking (or after 30 s, in case audio is off
+  // or blocked and never reports an end).
+  async untilQuiet() {
+    await sleep(100); // let the clip start
+    const limit = performance.now() + 30000;
+    while (this.howard.talking && performance.now() < limit) await sleep(100);
   }
 
   // ------------------------------------------------------------ input
