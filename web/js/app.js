@@ -524,6 +524,8 @@ class EditorScreen {
     const pal = Assets.img(ED, TYPES[t].paletteIcon + v);
     if (stock <= 0) draw(ED, 23, 41, 172); // keyed: dark text on the black viewer
     else if (pal) ctx.drawImage(pal.cv, Math.round(73 - pal.w / 2), Math.round(179 - pal.h / 2));
+    // Single-variant parts get grey, inactive variant arrows (seq104 -> seq293).
+    if (TYPES[t].variants === 1) { draw(ED, 89); draw(ED, 90); }
     // variant counter + stock
     textStyle(10, GREEN);
     ctx.textAlign = 'center';
@@ -637,7 +639,11 @@ class EditorScreen {
     if (this.drag) { this.dropDrag(x, y); return; }
     if (this.app.challenge && inRect(x, y, this.peekRect())) { this.peek = true; Sound.play(1022); return; }
     for (const b of this.buttons) {
-      if (inRect(x, y, this.rectOf(b))) { this.pressed = b; return; }
+      if (!inRect(x, y, this.rectOf(b))) continue;
+      // grey variant arrows don't react
+      if ((b.id === 'varPrev' || b.id === 'varNext') && TYPES[this.type].variants === 1) return;
+      this.pressed = b;
+      return;
     }
     if (this.banner && inRect(x, y, this.banner)) { this.app.openChallenges(this.app.challenge); return; }
     const r = Math.floor((y - ED_Y) / CELL), c = Math.floor((x - ED_X) / CELL);
@@ -1424,7 +1430,8 @@ class App {
     this.canvas.addEventListener('wheel', (e) => {
       const t = this.screen && target();
       if (!t || !t.onWheel) return;
-      if (t.onWheel(...pos(e), Math.sign(e.deltaY || e.deltaX))) e.preventDefault();
+      // wheel up = next, wheel down = previous
+      if (t.onWheel(...pos(e), -Math.sign(e.deltaY || e.deltaX))) e.preventDefault();
     }, { passive: false });
   }
 
